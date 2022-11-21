@@ -15,11 +15,8 @@ function App() {
               <Detail/>
             </Route>
 
-            <Route path='/bubble'>
-                <Bubble/>
-            </Route>
             <Route path='/'>
-                <Home/>
+                <Bubble/>
             </Route>
 
         {/* </MobileView> */}

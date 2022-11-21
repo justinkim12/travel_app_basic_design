@@ -48,12 +48,15 @@ constructor() {
 handleNewBubble() {
   this.bubbleSpan = document.createElement("span");
   cnt=cnt+1;
-  console.log(cnt);
+  // console.log(cnt);
   this.bubbleSpan.classList.add("bubble");
-  //this.bubbleSpan.textContent={cnt};
+  this.bubbleSpan.textContent="\r\nLongtraveling";
+  this.bubbleSpan.setAttribute("style","text-align: center; white-space: pre");
   root.append(this.bubbleSpan);
+  if(this.bubbleSpan.className!='hashtag')
   this.handlePosition();
-  this.bubbleSpan.addEventListener("click", this.bubbleEnd);
+
+  this.bubbleSpan.addEventListener("click", this.bubbleEnd);  
 }
 
 handlePosition() {
@@ -62,15 +65,16 @@ handlePosition() {
   const randomX = this.randomNumber(60, -60);
 
   this.bubbleSpan.style.backgroundColor = this.color;
+
   this.bubbleSpan.style.height = this.height + "px";
   this.bubbleSpan.style.width = this.height + "px";
+  if(this.bubbleSpan.className!='hashtag'){
+    this.posY = this.randomNumber(innerHeight/2 - 20, 20);
+    this.posX = this.randomNumber(innerWidth-40, 20);
 
-  this.posY = this.randomNumber(innerHeight/2 - 20, 20);
-  this.posX = this.randomNumber(innerWidth-40, 20);
-
-  this.bubbleSpan.style.top = this.posY + "px";
-  this.bubbleSpan.style.left = this.posX + "px";
-
+    this.bubbleSpan.style.top = this.posY + "px";
+    this.bubbleSpan.style.left = this.posX + "px";
+}
   const randomSec = this.randomNumber(4000, 200);
   setTimeout(this.handlePosition.bind(this), randomSec); // calling for re-position of bubble
 }
@@ -88,6 +92,7 @@ randomColor() {
 }
 
 bubbleEnd(removingTime = 0) {
+
   setTimeout(
     () => {
       requestAnimationFrame(() => this.classList.add("bubble--bust"));
@@ -95,14 +100,25 @@ bubbleEnd(removingTime = 0) {
     removingTime === 0 ? removingTime : removingTime - 100
   );
 
+  
   setTimeout(() => {
-    requestAnimationFrame(() => this.remove());
+    requestAnimationFrame(() => {
+      this.classList.remove("bubble--bust","bubble")
+      this.classList.add("hashtag")
+      let string =
+      this.textContent='#'+this.textContent
+      this.style=''
+      this.style.position='relative'
+      this.style.bottom=-60+'vh';
+
+  }
+    );
     //requestAnimationFrame(() => new Bubble());
   }, removingTime);
-}
+
 }
 
-// creating many bubble instance
+}
 
 setInterval(function () {
 requestAnimationFrame(() => new Bubble());
