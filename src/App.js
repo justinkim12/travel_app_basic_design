@@ -14,7 +14,7 @@ function App() {
             {/* path는 경로 컴포넌트로 사이트 띄우기 */}
               <Detail/>
             </Route>
-
+            
             <Route path='/'>
                 <Bubble/>
             </Route>

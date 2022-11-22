@@ -20,7 +20,9 @@ function Detail() {
 
     return (
         <div>
-           HI
+           {/* <img src="Bubble.png"/> */}
+           {/* <img src="./Bubble.png"/> */}
+           <img src="./../Bubble.png"/>
         </div>
     );
 };

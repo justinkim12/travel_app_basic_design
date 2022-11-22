@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 body {
@@ -20,6 +21,7 @@ body {
   border-radius: 50%;
   cursor: pointer;
   transition: linear 6s, transform 0.2s;
+
 }
 
 .bubble:hover {
